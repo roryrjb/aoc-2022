@@ -40,7 +40,7 @@ int main() {
     }
   }
 
-  printf("%ld + %ld + %ld = %ld\n", top3[0], top3[1], top3[2],
+  printf("1.2: %ld + %ld + %ld = %ld\n", top3[0], top3[1], top3[2],
          top3[0] + top3[1] + top3[2]);
 
   return 0;

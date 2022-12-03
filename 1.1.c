@@ -22,7 +22,7 @@ int main() {
       calories = 0;
   }
 
-  printf("%ld\n", accum);
+  printf("1.1: %ld\n", accum);
 
   return 0;
 }
