@@ -1,20 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main()
+{
   char data[16];
 
-  FILE *input;
+  FILE *input = fopen("1.txt", "r");
 
-  if (fopen_s(&input, "1.txt", "r")) {
-    perror("fopen_s");
+  if (input == NULL)
+  {
     exit(EXIT_FAILURE);
   }
 
   long accum = 0;
   long calories = 0;
 
-  while (fgets(data, 16, input) != NULL) {
+  while (fgets(data, 16, input) != NULL)
+  {
     calories += strtol(data, NULL, 10);
     if (calories > accum)
       accum = calories;

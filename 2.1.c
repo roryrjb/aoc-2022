@@ -1,19 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main()
+{
   char data[16];
-  FILE *input;
+  FILE *input = fopen("2.txt", "r");
   int overall_total = 0;
 
-  if (fopen_s(&input, "2.txt", "r")) {
-    perror("fopen_s");
+  if (input == NULL)
+  {
     exit(EXIT_FAILURE);
   }
 
-  while (fgets(data, 16, input) != 0) {
+  while (fgets(data, 16, input) != 0)
+  {
     int total = 0;
-    switch (data[2]) {
+    switch (data[2])
+    {
     case 'X':
       total += 1;
       break;
@@ -25,7 +28,8 @@ int main() {
       break;
     }
 
-    switch (data[0]) {
+    switch (data[0])
+    {
     case 'A':
       if (data[2] == 'Y')
         total += 6;
