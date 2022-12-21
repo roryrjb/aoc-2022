@@ -5,7 +5,13 @@ int main()
 {
   char data[16];
 
-  FILE *input = fopen("1.txt", "r");
+  FILE *input;
+
+  if (fopen_s(&input, "1.txt", "r") != 0)
+  {
+    fprintf(stderr, "Failed to open input file.\n");
+    exit(EXIT_FAILURE);
+  };
 
   if (input == NULL)
   {

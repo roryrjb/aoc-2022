@@ -4,13 +4,15 @@
 int main()
 {
   char data[16];
-  FILE *input = fopen("2.txt", "r");
   int overall_total = 0;
 
-  if (input == NULL)
+  FILE *input;
+
+  if (fopen_s(&input, "2.txt", "r") != 0)
   {
+    fprintf(stderr, "Failed to open input file.\n");
     exit(EXIT_FAILURE);
-  }
+  };
 
   while (fgets(data, 16, input) != 0)
   {

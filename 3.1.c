@@ -9,41 +9,43 @@
 
 int main()
 {
-    char data[BUF_SIZE];
-    FILE *input = fopen("3.txt", "r");
-    int total = 0;
+  char data[BUF_SIZE];
+  int total = 0;
 
-    if (input == NULL)
+  FILE *input;
+
+  if (fopen_s(&input, "3.txt", "r") != 0)
+  {
+    fprintf(stderr, "Failed to open input file.\n");
+    exit(EXIT_FAILURE);
+  };
+
+  while (fgets(data, BUF_SIZE, input) != NULL)
+  {
+    char match = '\0';
+    size_t len = strlen(data);
+    len = data[len - 1] == '\n' ? len - 1 : len; // don't count newlines
+
+    for (int i = 0; i < len / 2; i++)
     {
-        exit(EXIT_FAILURE);
-    }
+      char ch = data[i];
 
-    while (fgets(data, BUF_SIZE, input) != NULL)
-    {
-        char match = '\0';
-        size_t len = strlen(data);
-        len = data[len - 1] == '\n' ? len - 1 : len; // don't count newlines
-
-        for (int i = 0; i < len / 2; i++)
+      for (size_t j = len / 2; j < len; j++)
+      {
+        if (ch == data[j])
         {
-            char ch = data[i];
-
-            for (int j = len / 2; j < len; j++)
-            {
-                if (ch == data[j])
-                {
-                    match = ch;
-                    break;
-                }
-            }
-
-            if (match != '\0')
-                break;
+          match = ch;
+          break;
         }
+      }
 
-        // since chars are numbers let's just make the adjustment
-        total += (match >= 97) ? match - 96 : match - 38;
+      if (match != '\0')
+        break;
     }
 
-    printf("3.1: %d\n", total);
+    // since chars are numbers let's just make the adjustment
+    total += (match >= 97) ? match - 96 : match - 38;
+  }
+
+  printf("3.1: %d\n", total);
 }

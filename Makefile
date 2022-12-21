@@ -1,11 +1,18 @@
-targets = $(patsubst %.c,%,$(wildcard *.c))
+.SUFFIXES:
 
-entrypoint: run
+SHELL = cmd.exe
+CC := clang
+CFLAGS := -g -target x86_64-pc-windows-gnu -O0
 
-all: $(targets)
+targets = $(patsubst %.c,%.exe,$(wildcard *.c))
 
-run: all
-	@find . -maxdepth 1 -type f -executable -execdir {} \;
+build: $(targets)
+
+%.exe: %.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+run: build
+	@for %%i in (*.exe) do (%%i)
 	
 clean:
-	@rm -vf $(targets)
+	del *.exe
