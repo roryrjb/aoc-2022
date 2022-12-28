@@ -8,9 +8,9 @@ int main() {
   char data[BUF_SIZE];
   int total = 0;
 
-  FILE *input = fopen("4.txt", "r");
+  FILE *input;
 
-  if (input == NULL) {
+  if (fopen_s(&input, "4.txt", "r") != 0) {
     fprintf(stderr, "Failed to open input file.\n");
     exit(EXIT_FAILURE);
   };
