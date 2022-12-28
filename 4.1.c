@@ -4,23 +4,20 @@
 
 #define BUF_SIZE 16
 
-int main()
-{
+int main() {
   char data[BUF_SIZE];
   int total = 0;
 
   FILE *input;
 
-  if (fopen_s(&input, "4.txt", "r") != 0)
-  {
+  if (fopen_s(&input, "4.txt", "r") != 0) {
     fprintf(stderr, "Failed to open input file.\n");
     exit(EXIT_FAILURE);
   };
 
   int counter = 0;
 
-  while (fgets(data, BUF_SIZE, input) != NULL)
-  {
+  while (fgets(data, BUF_SIZE, input) != NULL) {
     size_t len = strlen(data);
 
     if (len < 2)
@@ -28,21 +25,15 @@ int main()
 
     char numbers[4][BUF_SIZE] = {"", "", "", ""};
 
-    for (int i = 0, j = 0; i < len; i++)
-    {
+    for (int i = 0, j = 0; i < len; i++) {
       char c = data[i];
 
-      if (c >= '0' && c <= '9')
-      {
+      if (c >= '0' && c <= '9') {
         numbers[counter][j++] = c;
-      }
-      else if (c == '-' || c == ',')
-      {
+      } else if (c == '-' || c == ',') {
         j = 0;
         counter++;
-      }
-      else
-      {
+      } else {
         break;
       }
     }

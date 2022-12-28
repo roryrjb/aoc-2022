@@ -2,7 +2,7 @@
 
 SHELL = cmd.exe
 CC := clang
-CFLAGS := -g -target x86_64-pc-windows-gnu -O0
+CFLAGS := -g --target=x86_64-pc-windows-gnu -O0
 
 targets = $(patsubst %.c,%.exe,$(wildcard *.c))
 

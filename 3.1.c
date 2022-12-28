@@ -7,33 +7,27 @@
 
 #define BUF_SIZE 64
 
-int main()
-{
+int main() {
   char data[BUF_SIZE];
   int total = 0;
 
   FILE *input;
 
-  if (fopen_s(&input, "3.txt", "r") != 0)
-  {
+  if (fopen_s(&input, "3.txt", "r") != 0) {
     fprintf(stderr, "Failed to open input file.\n");
     exit(EXIT_FAILURE);
   };
 
-  while (fgets(data, BUF_SIZE, input) != NULL)
-  {
+  while (fgets(data, BUF_SIZE, input) != NULL) {
     char match = '\0';
     size_t len = strlen(data);
     len = data[len - 1] == '\n' ? len - 1 : len; // don't count newlines
 
-    for (int i = 0; i < len / 2; i++)
-    {
+    for (int i = 0; i < len / 2; i++) {
       char ch = data[i];
 
-      for (size_t j = len / 2; j < len; j++)
-      {
-        if (ch == data[j])
-        {
+      for (size_t j = len / 2; j < len; j++) {
+        if (ch == data[j]) {
           match = ch;
           break;
         }

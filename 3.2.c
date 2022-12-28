@@ -7,15 +7,13 @@
 
 #define BUF_SIZE 64
 
-int main()
-{
+int main() {
   char data[BUF_SIZE];
   int total = 0;
 
   FILE *input;
 
-  if (fopen_s(&input, "3.txt", "r") != 0)
-  {
+  if (fopen_s(&input, "3.txt", "r") != 0) {
     fprintf(stderr, "Failed to open input file.\n");
     exit(EXIT_FAILURE);
   };
@@ -24,25 +22,19 @@ int main()
   char group[3][BUF_SIZE];
   char match = '\0';
 
-  while (fgets(data, BUF_SIZE, input) != NULL)
-  {
+  while (fgets(data, BUF_SIZE, input) != NULL) {
     strcpy_s(group[counter++], BUF_SIZE, data);
 
-    if (counter == 3)
-    {
+    if (counter == 3) {
       counter = 0;
       char *a = group[0];
       char *b = group[1];
       char *c = group[2];
 
-      for (int i = 0; i < strlen(a); i++)
-      {
-        for (int j = 0; j < strlen(b); j++)
-        {
-          for (int k = 0; k < strlen(c); k++)
-          {
-            if (a[i] == b[j] && a[i] == c[k] && c[k] == b[j])
-            {
+      for (int i = 0; i < strlen(a); i++) {
+        for (int j = 0; j < strlen(b); j++) {
+          for (int k = 0; k < strlen(c); k++) {
+            if (a[i] == b[j] && a[i] == c[k] && c[k] == b[j]) {
               match = a[i];
               break;
             }
